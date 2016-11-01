@@ -29,14 +29,6 @@ final public class Out {
         }
     }
 
-	public static void v(Object args) {
-		StackTraceElement[] traceEl = Thread.currentThread().getStackTrace();
-
-        String methodsList = getMethodsList(traceEl, findStartInt(traceEl));
-
-        output(args.toString() + TABS+SEP+SPACE + methodsList, false);
-	}
-
     public static void d(Object args) {
         StackTraceElement[] traceEl = Thread.currentThread().getStackTrace();
 
