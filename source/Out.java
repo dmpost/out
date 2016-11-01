@@ -1,7 +1,6 @@
-package com.webstunning.pr;
+package com.webstunning.out;
 
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.compat.BuildConfig;
 import android.util.Log;
 
@@ -15,15 +14,8 @@ final public class Out {
     private static final String ARROW = SPACE+'\u2190'+SPACE;
     private static final char DOT = '.';
     private static final char SEP = '\u2022';
-    //private static final char SEP = '│';
     private static final String TABS = "\t\t\t\t\t";
-    /*
 
-        long startTime = System.currentTimeMillis();
-        long difference = System.currentTimeMillis() - startTime;
-        Out.v("difference "+difference, this);" "
-
-     */
     private static boolean isRoboUnitTest() {
         return "robolectric".equals(Build.FINGERPRINT);
     }
@@ -74,7 +66,6 @@ final public class Out {
 
 
     private static String getMethodsList(StackTraceElement[] traceEl, int start) {
-        //String methodsList = checkIfStackTraceIsWrong(start);
         String methodsList = "";
         StackTraceElement e = traceEl[start];
         String className = getClassName(e.getClassName());
@@ -106,15 +97,6 @@ final public class Out {
         return methodsList;
     }
 
-//    private static String checkIfStackTraceIsWrong(int start){
-//        String methodsList = "";
-//        if(start < 4){
-//            methodsList += start+" Wrong StackTrace. Need hot restart. ";
-//        }
-//        return methodsList;
-//    }
-
-    @NonNull
     private static String getClassName(String fullClassName) {
         String className = fullClassName.replace("$override","");
         //Log.d(LOGCAT_FILTER_TAG, fullClassName);
