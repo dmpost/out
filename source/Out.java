@@ -49,7 +49,7 @@ final public class Out {
         boolean foundOut = false;
         for (int i = 0; i < traceEl.length; i++) {
             StackTraceElement e = traceEl[i];
-            String className = getShortClassName(e.getShortClassName());
+            String className = getShortClassName(e.getClassName());
             if(!foundOut && className.equals(THIS_CLASS_NAME))foundOut = true;
             if(foundOut && !className.equals(THIS_CLASS_NAME))return i;
         }
@@ -60,7 +60,7 @@ final public class Out {
     private static String getMethodsList(StackTraceElement[] traceEl, int start) {
         String methodsList = "";
         StackTraceElement e = traceEl[start];
-        String className = getShortClassName(e.getShortClassName());
+        String className = getShortClassName(e.getClassName());
         methodsList += className + DOT + e.getMethodName() + '(' + e.getFileName() + ':' + e.getLineNumber() + ')';
 
         start++;
