@@ -49,7 +49,7 @@ final public class Out {
         boolean foundOut = false;
         for (int i = 0; i < traceEl.length; i++) {
             StackTraceElement e = traceEl[i];
-            String className = getClassName(e.getClassName());
+            String className = getShortClassName(e.getClassName());
             if(!foundOut && className.equals(THIS_CLASS_NAME))foundOut = true;
             if(foundOut && !className.equals(THIS_CLASS_NAME))return i;
         }
@@ -60,7 +60,7 @@ final public class Out {
     private static String getMethodsList(StackTraceElement[] traceEl, int start) {
         String methodsList = "";
         StackTraceElement e = traceEl[start];
-        String className = getClassName(e.getClassName());
+        String className = getShortClassName(e.getClassName());
         methodsList += className + DOT + e.getMethodName() + '(' + e.getFileName() + ':' + e.getLineNumber() + ')';
 
         start++;
@@ -75,7 +75,7 @@ final public class Out {
             if(e.getClassName().matches("^(android\\.|com\\.android\\.|java\\.lang\\.).*")){
                 break;
             }
-            className = getClassName(e.getClassName());
+            className = getShortClassName(e.getClassName());
             if(className.equals(lastClassName)){
                 className = "";
             } else {
@@ -89,7 +89,7 @@ final public class Out {
         return methodsList;
     }
 
-    private static String getClassName(String fullClassName) {
+    private static String getShortClassName(String fullClassName) {
         String className = fullClassName.replace("$override","");
         //Log.d(LOGCAT_FILTER_TAG, fullClassName);
         className = className.substring(className.lastIndexOf(DOT) + 1);
